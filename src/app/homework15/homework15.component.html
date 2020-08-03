@@ -1,0 +1,25 @@
+<div class="bg-light pt-3">
+    <h2 class="text-center ">Angular list of previous tasks:</h2>
+    <hr>
+</div>
+
+<div class="container-fluid d-flex flex-row flex-nowrap justify-content-around align-items-center align-self-center" style="height: 40vw;">
+    <div *ngFor="let page of pages">
+        <div style="width: 310px; height: 300px; border: 1px solid gray;" class="rounded bg-light">
+            <div style=" height: 250px; background-color: #fff;">
+                <img style="width: 100%; margin-top: 20px;" [src]="page.picture" alt="">     
+                <h5 class="text-danger text-center mt-3">{{ page.name }}</h5>
+                <hr>
+            </div>
+            <a class="nav-link" [routerLink] = "page.routerLink" class="d-flex justfy-content-center">          
+                <input type="button" class="btn btn-success col-10" value="details" style="margin: auto;">
+            </a>
+        </div>
+    </div>
+
+                <!-- <input type="button" class="btn btn-success nav-link" value="details" routerLink="page.routerLink" routerLinkActive="active"> -->
+
+<!-- <a class="nav-link" [routerLink] = "['works/homework12']" class="d-flex justfy-content-center"> -->
+
+
+</div>

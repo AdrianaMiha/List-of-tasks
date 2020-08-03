@@ -1,0 +1,55 @@
+<div class="container">
+    <h1 class="text-danger">My phone book!</h1>
+    <hr>
+    <div class="input-group input-group-lg">        
+        <input type="text" placeholder="Search text goes here..." [(ngModel)]="searchName" name="searchName" class="form-control mr-3 rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        <input type="button" class="btn btn-success col-2" value="Add Phone" (click)="addPhone()">
+      </div>
+
+      <table class="table table-hover mt-3">
+        <thead>
+          <tr>
+            <th scope="col" (click)="nameFilter()">{{ FN }}</th>
+            <th scope="col" (click)="surnameFilter()">{{ LN }}</th>
+            <th scope="col" (click)="numberFilter()">{{ N }}</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let newUser of phoneBook | search:searchName | sortByName:column:order , let i = index">
+            <td >{{ newUser.firstName | titlecase }}</td>
+            <td>{{ newUser.lastName | titlecase }}</td>
+            <td>{{ newUser.number }}</td>
+            <td><input type="button" class="btn btn-warning" value="Edit" (click)="editUser(i)"></td>
+            <td><input type="button" class="btn btn-danger" value="Delete" (click)="deleteUser(i)"></td>
+          </tr>
+         </tbody>
+      </table>
+</div>
+
+
+<div class="fade"></div>
+
+<div *ngIf="add" class="newModal">
+    <div class="modal-dialog" >
+      <div class="modal-content mt-5 p-2" id="newMod">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ text }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex justify-content-around flex-column flex-nowrap ">
+          <input [(ngModel)]="firstName" class="form-control mb-3" type="text" name="firstName" placeholder="First name goes here...">
+          <input [(ngModel)]="lastName" class="form-control mb-3" type="text" name="lastName" placeholder="Second name goes here...">
+          <input [(ngModel)]="number" class="form-control" type="text" name="number"  placeholder="Phone number goes here...">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="savePhone()">Save</button>
+        </div>
+      </div>
+    </div>
+</div>

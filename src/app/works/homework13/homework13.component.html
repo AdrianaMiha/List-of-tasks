@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Plan your day!</h1>
+    <h2>User: Adriana Miha. Count of Task {{count}} </h2>
+    <hr>
+    <div class="input-group input-group-lg">        
+        <input type="text" [(ngModel)]="task" name="task" class="form-control mr-3 rounded" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        <input type="button" class="btn btn-success col-2" value="Add" (click)="addTask()">
+      </div>
+
+      <table class="table table-hover mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Check</th>
+            <th scope="col">DONE / IN PROGRESS</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let newTask of allTasks, let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{ newTask.task}}</td>
+            <td><input type="checkbox" [checked]="newTask.check" name="" id="" (click)="changeStatus(newTask)" ></td>
+            <td *ngIf="newTask.check" class="text-success">Done</td>
+            <td *ngIf="!newTask.check" class="text-danger">In PROGRESS</td>
+            <td><input type="button" class="btn btn-warning" value="Edit" (click)="editTask(i)"></td>
+            <td><input type="button" class="btn btn-danger" value="Delete" [disabled]="!newTask.check" (click)="deleteTask(i)"></td>
+          </tr>
+         
+          <tr *ngIf="edit">
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td><input type="text" [(ngModel)]="save" name="save" class="form-control col-7" value={{editString}}></td>
+            <td><input type="button" class="btn btn-success" value="Save" (click)="saveTask()" ></td>
+            <td></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+</div>

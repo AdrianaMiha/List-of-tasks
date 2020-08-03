@@ -1,0 +1,28 @@
+<!-- <div class="col-12 bg-light text-center pt-3 pb-3 border-bottom mb-5">
+    <h2>Angular list of prohibited words:</h2>
+</div> -->
+<div class="container d-flex justify-content-center pt-2">
+    <div class="bg-light col-9 d-flex flex-column mt-5 p-4">
+        <div class="d-flex flex-row">
+            <h4 class="mr-2">Bad words: </h4>
+            <h4 class="text-danger" id="bad">{{allsText}} </h4>
+        </div>
+        <div class="input-group input-group-lg mt-3 mb-3">
+
+            <input type="text" [(ngModel)]="text" [style.border]="borderWrong ? '1px solid tomato' : ''" name="text"
+                class="form-control col-8 mr-3" id="wordHere" [placeholder]="placeholder"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+
+
+            <div class="input-group-append">
+                <button class="btn btn-warning mr-3 col-8" type="button" id="button-addon2"
+                    (click)="addWord()">Add</button>
+                <button class="btn btn-danger col-8" type="button" id="button-addon2"
+                    (click)="resetInput()">Reset</button>
+            </div>
+        </div>
+        <textarea id="textarea" [(ngModel)]="area" name="area" class="form-control  form-control-lg mt-1 pb-5"
+            [placeholder]="areaPl" [style.border]="borderWrongPl ? '1px solid tomato' : ''"></textarea>
+        <button class="btn btn-lg btn-success mt-4" type="button" id="button-addon2" (click)="censor()">Censor</button>
+    </div>
+</div>

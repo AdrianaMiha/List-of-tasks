@@ -1,0 +1,47 @@
+<!-- <div class="col-12 bg-light text-center pt-3 pb-3 border-bottom mb-5">
+    <h2>Angular user tasks</h2>
+</div> -->
+<div class="container" style="height: 50vh;">
+    <form name="form">
+        <div class="min-div left">
+            <label for="login">Login</label>
+            <input type="text" [(ngModel)]="login" name="login" id="login" placeholder="Enter login">
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Enter password">
+            <label for="email">Email adress</label>
+            <input type="text" [(ngModel)]="email" name="email" id="email" placeholder="Enter email">
+            <ng-container *ngIf="isAdd; else elseTemplate">
+                <input type="button" value="Add user" class="add btn-success" (click)="addUser()" >
+            </ng-container>
+            <ng-template #elseTemplate>
+                <input type="button" value="Save edit user" id="edit" class="add btn-primary" (click)="saveEditUser()">
+            </ng-template>
+        </div>
+    </form>
+
+    <div class="min-div right">
+
+        <table>
+            <tr id="first">
+                <th>#</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+        <div class="table">
+            <div class="divs" *ngFor="let user of userArray; let i = index">
+                <div [ngStyle]="{'max-width': '25px'}">{{i+1}}</div>
+                <div class='login' [ngStyle]="{'max-width': '95px'}">{{user.login}}</div>
+                <div [ngStyle]="{'max-width': '160px'}">{{user.password}}</div>
+                <div>{{user.email}}</div>
+                <div><input type="button" value="Edit" name="but" class="edit${i} edit" (click)="editUser(i)" readonly>
+                </div>
+                <div><input type="button" name="but" value="Delete" class="delete${i} delete" (click)="deleteUser(i)" [disabled]='!isAdd ? true : false'>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
